@@ -9,12 +9,12 @@ DGRAY='\033[1;30m'
 NC='\033[0m' # No Color
 
 MOUNT_LOCATION=/mnt/gentoo
-TIMEZONE=Asia/Dubai
+TIMEZONE=Europe/Berlin
 
-CFLAGS="-march=haswell -O2 -pipe"
-CPU_FLAGS="aes avx fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
-USE_FLAGS="X acl bindist mmx sse sse2 -suid -kde -qt4 sna dri pulseaudio alsa dbus"
-MAKE_OPTIONS="-j9"
+CFLAGS="-march=nativ -O2 -pipe"
+CPU_FLAGS="aes avx fma3 mmx mmxext popcnt sse sse2"
+USE_FLAGS="X acl bindist mmx sse sse2 -suid -kde -bluetooth -systemd sna dri alsa dbus"
+MAKE_OPTIONS="-j4"
 
 BIOS_PARTITION=/dev/sda1
 BOOT_PARTITION=/dev/sda2
@@ -131,7 +131,7 @@ CHOST="x86_64-pc-linux-gnu"
 # These are the USE flags that were used in addition to what is provided by the
 # profile used for building.
 USE="${USE_FLAGS}"
-MAKEOPTS="-j9"
+MAKEOPTS="-j4"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
@@ -157,12 +157,13 @@ EOF
 #en_US ISO-8859-1
  en_US.UTF-8 UTF-8
 #ja_JP.EUC-JP EUC-JP
-ja_JP.UTF-8 UTF-8
+#ja_JP.UTF-8 UTF-8
 #ja_JP EUC-JP
 #en_HK ISO-8859-1
 #en_PH ISO-8859-1
-#de_DE ISO-8859-1
-#de_DE@euro ISO-8859-15
+ de_DE.UTF-8 UTF-8
+ de_DE ISO-8859-1
+ de_DE@euro ISO-8859-15
 #es_MX ISO-8859-1
 #fa_IR UTF-8
 #fr_FR ISO-8859-1
@@ -172,7 +173,7 @@ EOF
 
 
   command locale-gen
-  command eselect locale set en_US.utf8
+  command eselect locale set de_DE.utf8
 
   message "Reloading Environment"
   command env-update && source /etc/profile && export PS1="(chroot) $PS1"
